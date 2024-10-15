@@ -14,7 +14,7 @@ export class UserController {
         const user = await this.userService.getById(id);
 
         if (!user) {
-            throw new NotFoundException("User is not found!")
+            throw new NotFoundException("User is not found!");
         }
 
         return user;
@@ -22,7 +22,7 @@ export class UserController {
 
     //Тут бы я добвил проверку на админа, поскольку создание пользователя в auth/register, думаю это штучное создание в основном это делают админы
     @Post("add-user")
-    async addUser(@Body() dto: RegisterDto) {
+    async addUser(@Body() dto: RegisterDto): Promise<UserInterface> {
         return this.userService.create(dto);
     }
 }
